@@ -1,0 +1,13 @@
+<h2>Log</h2>
+<div id="log" scroll-glue>
+<table>
+    <thead>
+    <th>Logline</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="logline in log.log track by $index">
+        <td>{{logline}}</td>
+    </tr>
+    </tbody>
+</table>
+</div>
