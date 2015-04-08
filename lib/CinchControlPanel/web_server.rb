@@ -20,6 +20,11 @@ module CinchControlPanel
     set :sockets, []
     set :bots, []
 
+    controllers = ::CinchControlPanel::WebSocketController.descendants.each_with_object({}) do |controller, object|
+      object[controller.to_s.split('::').last.to_sym] = controller.new
+    end
+    set :controllers, controllers
+
     register Sinatra::AssetPack
 
     assets do
@@ -52,6 +57,19 @@ module CinchControlPanel
           ws.onopen do
             settings.sockets << ws
             EM.next_tick { ws.send WebSocketMessage.new('log',CinchControlPanel::LoggerOutput.instance).to_s } #send the entire history right away
+          end
+
+          ws.onmessage do |msg|
+            msg = WebSocketMessage.new(msg)
+            logger.info "Received: #{msg.to_s}"
+            logger.info "Calling #{msg.event.capitalize}Controller#action(#{msg.data['command']}, #{msg.data['data']})"
+            result = controllers["#{msg.event.capitalize}Controller".to_sym].send('action', msg.data['command'], msg.data['data'])
+            logger.info "Sent: #{result}"
+            EM.next_tick { ws.send(result) }
+          end
+
+          ws.onclose do
+            settings.sockets.delete ws
           end
         end
       end
