@@ -3,7 +3,7 @@
 This gem adds an angular.js and websockets based web control panel for the [Cinch](https://github.com/cinchrb/cinch) bot framework
 
 ## Installation
-
+NOTE: NOT PUBLISHED YET. THIS IS NOT A COMPLETE BUILD
 Add this line to your application's Gemfile:
 
 ```ruby
