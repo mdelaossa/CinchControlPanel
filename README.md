@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Either run `CinchControlPanel::WebServer.run!` or setup a rackup file
+Either call `CinchControlPanel::WebServer.run!` in your ruby code or setup a rackup file
 
     #config.ru
     require 'CinchControlPanel'
