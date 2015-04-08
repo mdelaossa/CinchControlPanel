@@ -14,7 +14,7 @@ module CinchControlPanel
     end
 
     def to_h
-      {"event" => @event, "data" => @data}
+      {event: @event, data: @data}
     end
 
     def to_json
