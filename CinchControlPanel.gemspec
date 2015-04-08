@@ -25,8 +25,18 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rack-test", "~> 0.6.3"
+  spec.add_development_dependency "rspec", "~> 3.2.0"
+  spec.add_development_dependency "capybara", "~> 2.4.4"
+  spec.add_development_dependency "selenium-webdriver", "~> 2.45.0"
+  spec.add_development_dependency "teaspoon", "~> 0.9.1"
+  spec.add_development_dependency "phantomjs", "~> 1.9.8.0"
+  spec.add_development_dependency "headless", "~> 1.0.2"
 
+  spec.add_runtime_dependency "require_all", "~> 1.3.2"
   spec.add_runtime_dependency "cinch", "~> 2.2.4"
   spec.add_runtime_dependency "sinatra", "~> 1.4.6"
+  spec.add_runtime_dependency "sinatra-assetpack", "~> 0.3.3"
   spec.add_runtime_dependency "sinatra-websocket", "~> 0.3.1"
+  spec.add_runtime_dependency "sass", "~> 3.4.13"
 end
