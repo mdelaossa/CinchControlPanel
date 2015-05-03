@@ -1,0 +1,23 @@
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newBot">New Bot</button>
+<div id="newBot" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h4 class="modal-title">New Bot</h4></div>
+      <div class="modal-body">
+        <form ng-submit="newBot(botArgs)">
+          <label for="botArgs.nick">Nick: </label>
+          <input type="text" ng-model="botArgs.nick" />
+          <label for="botArgs.server">Server: </label>
+          <input type="text" ng-model="botArgs.server" />
+          <label for="botArgs.ssl.use">SSL?</label>
+          <input type="checkbox" ng-model="botArgs.ssl.use" />
+
+          <button type="submit">New bot</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+      </div>
+    </div>
+  </div>
+</div>

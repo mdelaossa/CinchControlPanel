@@ -39,4 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sinatra-assetpack", "~> 0.3.3"
   spec.add_runtime_dependency "sinatra-websocket", "~> 0.3.1"
   spec.add_runtime_dependency "sass", "~> 3.4.13"
+  spec.add_runtime_dependency "recursive-open-struct", "~> 0.6.3"
 end

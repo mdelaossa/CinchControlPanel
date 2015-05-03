@@ -14,6 +14,10 @@ module CinchControlPanel
       enable :logging
     end
 
+    configure :development do
+      set :logging, Logger::DEBUG
+    end
+
     set :root, File.dirname(__FILE__)
     #set :environment, :production #TODO: Switch when done
 
@@ -30,15 +34,17 @@ module CinchControlPanel
     assets do
       serve '/scripts', from: 'scripts'
       serve '/scripts/vendor', from: 'bower_components'
+      serve '/styles/vendor', from: 'bower_components'
       serve '/styles', from: 'styles'
 
       js :application, %w(/scripts/vendor/angular/angular.min.js
                           /scripts/vendor/angular-route/angular-route.min.js
-                          /scripts/vendor/angular-websocket/angular-websocket.min.js
+                          /scripts/vendor/jquery/dist/jquery.min.js
                           /scripts/vendor/ng-websocket/ng-websocket.js
                           /scripts/vendor/angular-scroll-glue/src/scrollglue.js
+                          /scripts/vendor/bootstrap-sass-official/assets/javascripts/bootstrap.min.js
                           /scripts/*.js)
-      css :application, ['/styles/*.css']
+      css :application, %w(/styles/*.css)
 
       js_compression :jsmin
       css_compression :sass
@@ -61,10 +67,10 @@ module CinchControlPanel
 
           ws.onmessage do |msg|
             msg = WebSocketMessage.new(msg)
-            logger.info "Received: #{msg.to_s}"
-            logger.info "Calling #{msg.event.capitalize}Controller#action(#{msg.data['command']}, #{msg.data['data']})"
+            logger.debug "Received: #{msg.to_s}"
+            logger.debug "Calling #{msg.event.capitalize}Controller#action(#{msg.data['command']}, #{msg.data['data']})"
             result = controllers["#{msg.event.capitalize}Controller".to_sym].send('action', msg.data['command'], msg.data['data'])
-            logger.info "Sent: #{result}"
+            logger.debug "Sent: #{result}"
             EM.next_tick { ws.send(result) }
           end
 

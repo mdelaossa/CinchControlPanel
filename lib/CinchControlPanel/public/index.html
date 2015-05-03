@@ -1,5 +1,6 @@
 <button ng-click="startBots()">Start bots</button>
 <button ng-click="stopBots()">Stop bots</button>
+<ng-include src="'newBot.html'"></ng-include>
 
 <form ng-submit="sendCommand(command)">
     <input type="text" ng-model="command" /> <button type="submit">Send command</button>
@@ -9,12 +10,12 @@
 <pre>{{commandResult}}</pre>
 
 <h2>Log</h2>
-<div id="log" scroll-glue>
+<div>
 <table>
     <thead>
-    <th>Logline</th>
+    <th>Data</th>
     </thead>
-    <tbody>
+    <tbody  id="log" scroll-glue>
     <tr ng-repeat="logline in log.log track by $index">
         <td>{{logline}}</td>
     </tr>
