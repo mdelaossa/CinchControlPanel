@@ -1,24 +1,5 @@
-<button ng-click="startBots()">Start bots</button>
-<button ng-click="stopBots()">Stop bots</button>
-<ng-include src="'newBot.html'"></ng-include>
+<div ui-view="bot"></div>
 
-<form ng-submit="sendCommand(command)">
-    <input type="text" ng-model="command" /> <button type="submit">Send command</button>
-</form>
+<div ui-view="ruby"></div>
 
-<h2>Command Result</h2>
-<pre>{{commandResult}}</pre>
-
-<h2>Log</h2>
-<div>
-<table>
-    <thead>
-    <th>Data</th>
-    </thead>
-    <tbody  id="log" scroll-glue>
-    <tr ng-repeat="logline in log.log track by $index">
-        <td>{{logline}}</td>
-    </tr>
-    </tbody>
-</table>
-</div>
+<div ui-view="log"></div>

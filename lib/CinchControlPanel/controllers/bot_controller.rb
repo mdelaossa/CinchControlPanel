@@ -18,14 +18,14 @@ module CinchControlPanel
           c.channels        = values.channels || []
           c.plugins.prefix  = values.plugins.prefix
           c.plugins.plugins = values.plugins.plugins.collect { |plugin| class_from_string(plugin) } || []
-          c.plugins.options[Cinch::Plugins::Identify] = {
-            :username => values.user,
-            :password => values.nickpass,
-            :type     => :nickserv
-          }
+          #c.plugins.options[Cinch::Plugins::Identify] = {
+          #  :username => values.user,
+          #  :password => values.nickpass,
+          #  :type     => :nickserv
+          #}
         end
       end
-      "New bot created. Nick: #{bot.nick}, Server: #{bot.server}"
+      "New bot created. Nick: #{bot.nick}, Server: #{bot.config.server}"
     end
 
     def start args

@@ -33,18 +33,20 @@ module CinchControlPanel
 
     assets do
       serve '/scripts', from: 'scripts'
-      serve '/scripts/vendor', from: 'bower_components'
-      serve '/styles/vendor', from: 'bower_components'
+      serve '/vendor/scripts', from: 'bower_components'
+      serve '/vendor/styles', from: 'bower_components'
       serve '/styles', from: 'styles'
 
-      js :application, %w(/scripts/vendor/angular/angular.min.js
-                          /scripts/vendor/angular-route/angular-route.min.js
-                          /scripts/vendor/jquery/dist/jquery.min.js
-                          /scripts/vendor/ng-websocket/ng-websocket.js
-                          /scripts/vendor/angular-scroll-glue/src/scrollglue.js
-                          /scripts/vendor/bootstrap-sass-official/assets/javascripts/bootstrap.min.js
-                          /scripts/*.js)
-      css :application, %w(/styles/*.css)
+      js :application, %w(/vendor/scripts/angular/angular.min.js
+                          /vendor/scripts/angular-ui-router/release/angular-ui-router.min.js
+                          /vendor/scripts/jquery/dist/jquery.min.js
+                          /vendor/scripts/ng-websocket/ng-websocket.js
+                          /vendor/scripts/angular-scroll-glue/src/scrollglue.js
+                          /vendor/scripts/bootstrap-sass-official/assets/javascripts/bootstrap.min.js
+                          /scripts/angular.js
+                          /scripts/*/*.js)
+      css :application, %w(/styles/*.css
+                           /vendor/styles/*.css)
 
       js_compression :jsmin
       css_compression :sass
