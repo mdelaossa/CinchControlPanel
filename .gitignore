@@ -10,3 +10,4 @@
 /.sass-cache/
 /.idea/
 /config.ru
+lib/CinchControlPanel/bower_components
