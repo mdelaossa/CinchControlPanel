@@ -4,7 +4,10 @@ controllers.controller 'BotController', [
   'WebSocketService'
   ($scope, WebSocketService) ->
     $scope.botArgs =
-      ssl: {}
+      port: 6667
+      ssl:
+        use: false
+        verify: true
       plugins:
         plugins: []
 

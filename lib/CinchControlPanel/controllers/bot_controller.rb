@@ -25,7 +25,7 @@ module CinchControlPanel
           #}
         end
       end
-      "New bot created. Nick: #{bot.nick}, Server: #{bot.config.server}"
+      "New bot created. Nick: #{bot.config.nick}, Server: #{bot.config.server}:#{bot.config.port}"
     end
 
     def start args
