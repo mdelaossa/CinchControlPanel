@@ -2,12 +2,13 @@ app = angular.module 'cinch-controlpanel'
 
 app.factory 'LogService', [
   'WebSocketService'
-  (WebSocketService) ->
+  'TypeService'
+  (WebSocketService, TypeService) ->
     log = []
     WebSocketService.subscribe 'log', (message) ->
-      if toType(message) == 'string'
+      if TypeService.toType(message) == 'string'
         log.push message
-      else if toType(message) == 'array'
+      else if TypeService.toType(message) == 'array'
         Array::push.apply log, message
 
     return {log: log}

@@ -1,8 +1,5 @@
 'use strict'
 
-toType = (obj) ->
-  {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
-
 controllers = angular.module('controllers', [])
 
 app = angular.module('cinch-controlpanel', [
@@ -30,19 +27,22 @@ app.config [
           templateUrl: 'ruby.html'
           controller: 'RubyController'
         'log':
-          templateUrl: 'index.html'
+          templateUrl: 'log.html'
           controller: 'LogController'
 
     $urlRouterProvider.otherwise '/'
 
-  ###$locationProvider.html5Mode({
-      enabled: true
-  });
-  ###
+# $locationProvider.html5Mode(enabled: true)
 
 #TODO: Enable HTML5 mode when done developing
 ]
 
-app.run ['$rootScope', ($rootScope) ->
+app.factory 'TypeService', ()->
+  toType: (obj) ->
+    {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+
+app.run ['$rootScope', 'TypeService', ($rootScope, TypeService)->
   $rootScope.$on("$stateChangeError", (-> console.log.bind(console)))
+
+  $rootScope.toType = TypeService.toType
 ]
